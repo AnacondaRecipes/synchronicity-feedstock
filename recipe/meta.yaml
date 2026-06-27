@@ -1,6 +1,5 @@
 {% set name = "synchronicity" %}
 {% set version = "0.12.5" %}
-{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
@@ -11,19 +10,18 @@ source:
   sha256: 94d96b1d85698e3056b96a793b8c0949af6584e4a7d877fabdeb5385efe230aa
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
+  skip: true  # [py<310]
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python
     - hatchling
     - pip
   run:
-    - python >={{ python_min }}
-    - sigtools >=4.0.1
-    - typing_extensions >=4.12.2
+    - python
+    - typing-extensions >=4.12.2
 
 test:
   imports:
@@ -31,14 +29,21 @@ test:
   commands:
     - pip check
   requires:
-    - python {{ python_min }}
     - pip
 
 about:
-  home: https://pypi.org/project/synchronicity/
+  home: https://github.com/modal-labs/synchronicity
   summary: Export blocking and async library versions from a single async implementation
+  description: |
+    synchronicity lets you export a blocking (synchronous) and an asynchronous
+    version of a library from a single asynchronous implementation. It wraps
+    coroutines, generators, async context managers, and classes so that the same
+    code can be consumed transparently from synchronous and asynchronous callers,
+    while preserving a single event loop running on a dedicated thread.
   license: Apache-2.0
+  license_family: Apache
   license_file: LICENSE
+  doc_url: https://github.com/modal-labs/synchronicity
   dev_url: https://github.com/modal-labs/synchronicity
 
 extra:
