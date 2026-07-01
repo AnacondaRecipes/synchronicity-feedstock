@@ -22,6 +22,9 @@ requirements:
   run:
     - python
     - typing-extensions >=4.12.2
+  run_constraned:
+    # compile
+    - sigtools >=4.0.1
 
 test:
   imports:
