@@ -1,5 +1,5 @@
 {% set name = "synchronicity" %}
-{% set version = "0.12.5" %}
+{% set version = "0.11.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 94d96b1d85698e3056b96a793b8c0949af6584e4a7d877fabdeb5385efe230aa
+  sha256: 3628df9ab34bd7be89b729104114841c62612c5d5ec43b76f4b7b243185ec1a8
 
 build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
@@ -22,7 +22,7 @@ requirements:
   run:
     - python
     - typing-extensions >=4.12.2
-  run_constraned:
+  run_constrained:
     # compile
     - sigtools >=4.0.1
 
